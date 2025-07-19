@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">AppScreens</string>
+    <string name="welcome_back">Welcome \n Back</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="coming_soon">Coming soon</string>
+    <string name="forgot_password_btn_click">Forgot password Button clicked</string>
+    <string name="sign_in_btn_clicked">SignIn button clicked</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="facebook_btn_clicked">Facebook button clicked</string>
+    <string name="gmail_btn_clicked">Gmail button clicked</string>
+    <string name="login_here">Login here</string>
+    <string name="welcome_login_you_have_missed">Welcome back you\'ve been missed!</string>
+    <string name="create_new_account">Create new account</string>
+    <string name="or_with">or continue with</string>
+    <string name="please_fill_all_fields">Please fill in all fields</string>
+    <string name="username">Username</string>
+    <string name="enter_your_user_name_password"><![CDATA[Enter Your Username & Password]]></string>
+    <string name="login">Login</string>
+    <string name="do_not_have_account">Don\'t have and account?</string>
+    <string name="sign_up">" Sign Up"</string>
+    <string name="goto_to_sign_up_screen">Clicked go to sign up screen</string>
+</resources>
