@@ -53,10 +53,10 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.mj.appscreens.R
-import org.mj.appscreens.ui.theme.AppScreensTheme
-import org.mj.appscreens.ui.theme.CustomColor
-import org.mj.appscreens.utils.AllPreview
+import com.sj.corescreens.R
+import com.sj.corescreens.ui.theme.CustomColor
+import com.sj.corescreens.utils.AllPreview
+
 
 @Composable
 fun LoginScreenOne() {
@@ -408,7 +408,7 @@ private fun PasswordInputField(
 @AllPreview
 @Composable
 fun LoginScreenOnePreview() {
-    AppScreensTheme {
+    MaterialTheme {
         Scaffold { innerPadding ->
             Column(
                 modifier = Modifier

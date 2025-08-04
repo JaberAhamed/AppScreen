@@ -46,8 +46,8 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.mj.appscreens.R
-import org.mj.appscreens.ui.theme.AppScreensTheme
+import com.sj.corescreens.R
+
 
 @Composable
 fun LoginScreenNine() {
@@ -342,7 +342,7 @@ fun LoginScreenNine() {
 @PreviewLightDark
 @Composable
 fun LoginScreenNinePreview() {
-    AppScreensTheme {
+    MaterialTheme {
         Scaffold { innerPadding ->
             Column(modifier = Modifier.padding(innerPadding)) {
                 LoginScreenNine()

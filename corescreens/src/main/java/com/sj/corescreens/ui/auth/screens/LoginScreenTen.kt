@@ -54,9 +54,8 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.mj.appscreens.R
-import org.mj.appscreens.ui.theme.AppScreensTheme
-import org.mj.appscreens.ui.theme.CustomColor
+import com.sj.corescreens.R
+import com.sj.corescreens.ui.theme.CustomColor
 
 @Composable
 fun LoginScreenTen() {
@@ -350,7 +349,7 @@ fun LoginScreenTen() {
 @PreviewLightDark
 @Composable
 fun LoginScreenTenPreview() {
-    AppScreensTheme {
+    MaterialTheme {
         Scaffold { innerPadding ->
             Column(modifier = Modifier.padding(innerPadding)) {
                 LoginScreenTen()
