@@ -1,4 +1,4 @@
-package org.mj.appscreens.ui.screen
+package com.sj.corescreens.ui.auth.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -63,10 +63,10 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.mj.appscreens.R
-import org.mj.appscreens.ui.theme.AppScreensTheme
-import org.mj.appscreens.ui.theme.CustomColor
-import org.mj.appscreens.utils.AllPreview
+import com.sj.corescreens.R
+import com.sj.corescreens.ui.theme.CustomColor
+import com.sj.corescreens.utils.AllPreview
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -225,18 +225,18 @@ fun LoginScreenEight() {
                     value = email,
                     onValueChange = { email = it },
                     modifier =
-                    Modifier
-                        .fillMaxSize(),
+                        Modifier
+                            .fillMaxSize(),
                     visualTransformation = VisualTransformation.None,
                     interactionSource = interactionSourceEmail,
                     enabled = true,
                     singleLine = true,
                     textStyle = LocalTextStyle.current,
                     keyboardOptions =
-                    KeyboardOptions(
-                        keyboardType = KeyboardType.Text,
-                        imeAction = ImeAction.Next
-                    )
+                        KeyboardOptions(
+                            keyboardType = KeyboardType.Text,
+                            imeAction = ImeAction.Next
+                        )
                 ) { innerTextField ->
                     TextFieldDefaults.DecorationBox(
                         value = email.text,
@@ -254,20 +254,20 @@ fun LoginScreenEight() {
                             )
                         },
                         contentPadding =
-                        PaddingValues(
-                            start = 20.dp,
-                            bottom = 12.dp,
-                            end = 0.dp
-                        ),
+                            PaddingValues(
+                                start = 20.dp,
+                                bottom = 12.dp,
+                                end = 0.dp
+                            ),
                         colors =
-                        TextFieldDefaults.colors(
-                            focusedTextColor = MaterialTheme.colorScheme.onSecondary,
-                            focusedContainerColor = MaterialTheme.colorScheme.onSecondary,
-                            unfocusedContainerColor = MaterialTheme.colorScheme.onSecondary,
-                            disabledIndicatorColor = Color.Transparent,
-                            focusedIndicatorColor = Color.Transparent,
-                            unfocusedIndicatorColor = Color.Transparent
-                        )
+                            TextFieldDefaults.colors(
+                                focusedTextColor = MaterialTheme.colorScheme.onSecondary,
+                                focusedContainerColor = MaterialTheme.colorScheme.onSecondary,
+                                unfocusedContainerColor = MaterialTheme.colorScheme.onSecondary,
+                                disabledIndicatorColor = Color.Transparent,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent
+                            )
 
                     )
                 }
@@ -298,18 +298,18 @@ fun LoginScreenEight() {
                     value = password,
                     onValueChange = { password = it },
                     modifier =
-                    Modifier
-                        .fillMaxWidth(),
+                        Modifier
+                            .fillMaxWidth(),
                     visualTransformation = PasswordVisualTransformation(),
                     interactionSource = interactionSourcePassword,
                     enabled = true,
                     singleLine = true,
                     textStyle = LocalTextStyle.current,
                     keyboardOptions =
-                    KeyboardOptions(
-                        keyboardType = KeyboardType.Password,
-                        imeAction = ImeAction.Done
-                    )
+                        KeyboardOptions(
+                            keyboardType = KeyboardType.Password,
+                            imeAction = ImeAction.Done
+                        )
                 ) { innerTextField ->
                     TextFieldDefaults.DecorationBox(
                         value = password.text,
@@ -335,19 +335,19 @@ fun LoginScreenEight() {
                             }
                         },
                         contentPadding =
-                        PaddingValues(
-                            start = 20.dp,
-                            bottom = 12.dp
-                        ),
+                            PaddingValues(
+                                start = 20.dp,
+                                bottom = 12.dp
+                            ),
                         colors =
-                        TextFieldDefaults.colors(
-                            focusedTextColor = MaterialTheme.colorScheme.onSecondary,
-                            focusedContainerColor = MaterialTheme.colorScheme.onSecondary,
-                            unfocusedContainerColor = MaterialTheme.colorScheme.onSecondary,
-                            disabledIndicatorColor = Color.Transparent,
-                            focusedIndicatorColor = Color.Transparent,
-                            unfocusedIndicatorColor = Color.Transparent
-                        )
+                            TextFieldDefaults.colors(
+                                focusedTextColor = MaterialTheme.colorScheme.onSecondary,
+                                focusedContainerColor = MaterialTheme.colorScheme.onSecondary,
+                                unfocusedContainerColor = MaterialTheme.colorScheme.onSecondary,
+                                disabledIndicatorColor = Color.Transparent,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent
+                            )
                     )
                 }
             }
@@ -357,12 +357,12 @@ fun LoginScreenEight() {
              */
             TextButton(
                 modifier =
-                Modifier
-                    .padding(
-                        top = 16.dp,
-                        end = 26.dp
-                    )
-                    .align(Alignment.End),
+                    Modifier
+                        .padding(
+                            top = 16.dp,
+                            end = 26.dp
+                        )
+                        .align(Alignment.End),
                 onClick = { },
                 contentPadding = PaddingValues(top = 0.dp, bottom = 0.dp)
             ) {
@@ -524,7 +524,7 @@ fun LoginScreenEight() {
 @AllPreview
 @Composable
 fun LoginScreenEightPreview() {
-    AppScreensTheme {
+    MaterialTheme {
         Scaffold { innerPadding ->
             Column(modifier = Modifier.padding(innerPadding)) {
                 LoginScreenEight()

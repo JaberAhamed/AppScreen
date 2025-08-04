@@ -1,4 +1,4 @@
-package org.mj.appscreens.ui.screen
+package com.sj.corescreens.ui.auth.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

@@ -1,4 +1,4 @@
-package org.mj.appscreens.ui.theme
+package org.mj.appscreens.theme
 
 import android.app.Activity
 import android.os.Build

@@ -1,4 +1,4 @@
-package org.mj.appscreens.ui.theme
+package com.sj.corescreens.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
