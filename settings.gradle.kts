@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "AppScreens"
 include(":app")
- 
+include(":corescreens")
