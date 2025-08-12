@@ -11,7 +11,7 @@ import com.sj.corescreens.ui.auth.screens.LoginScreenEight
 import com.sj.corescreens.ui.auth.screens.LoginScreenFive
 import com.sj.corescreens.ui.auth.screens.LoginScreenFour
 import com.sj.corescreens.ui.auth.screens.LoginScreenNine
-import com.sj.corescreens.ui.auth.screens.LoginScreenOne
+import com.sj.corescreens.ui.auth.screens.loginScreenOne.LoginScreenOne
 import com.sj.corescreens.ui.auth.screens.LoginScreenSeven
 import com.sj.corescreens.ui.auth.screens.LoginScreenSix
 import com.sj.corescreens.ui.auth.screens.LoginScreenTen

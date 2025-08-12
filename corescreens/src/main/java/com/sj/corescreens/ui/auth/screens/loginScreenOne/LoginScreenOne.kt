@@ -1,4 +1,4 @@
-package com.sj.corescreens.ui.auth.screens
+package com.sj.corescreens.ui.auth.screens.loginScreenOne
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
