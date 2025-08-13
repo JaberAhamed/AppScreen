@@ -1,4 +1,4 @@
-package com.sj.corescreens.ui.auth.screens
+package com.sj.corescreens.ui.auth.screens.loginScreenThree
 
 import android.widget.Toast
 import androidx.compose.foundation.Canvas
