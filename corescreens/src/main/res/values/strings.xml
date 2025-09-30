@@ -21,4 +21,11 @@
     <string name="do_not_have_account">Don\'t have and account?</string>
     <string name="sign_up">" Sign Up"</string>
     <string name="goto_to_sign_up_screen">Clicked go to sign up screen</string>
+    <string name="create_acount">Create Account</string>
+    <string name="create_a_new_account">Create a new account to get started and enjoy seamless access to our features.</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up_btn_clicked">Sign Up button clicked!</string>
+    <string name="password_mismatch">Passwords do not match</string>
+    <string name="signup_here">Signup here</string>
 </resources>

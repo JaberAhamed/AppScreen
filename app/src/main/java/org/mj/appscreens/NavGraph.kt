@@ -7,16 +7,16 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.sj.corescreens.ui.auth.screens.LoginScreenEight
-import com.sj.corescreens.ui.auth.screens.LoginScreenFive
-import com.sj.corescreens.ui.auth.screens.LoginScreenFour
-import com.sj.corescreens.ui.auth.screens.LoginScreenNine
+import com.sj.corescreens.ui.auth.screens.loginScreenEight.LoginScreenEight
+import com.sj.corescreens.ui.auth.screens.loginScreenFive.LoginScreenFive
+import com.sj.corescreens.ui.auth.screens.loginScreenFour.LoginScreenFour
+import com.sj.corescreens.ui.auth.screens.loginScreenNine.LoginScreenNine
 import com.sj.corescreens.ui.auth.screens.loginScreenOne.LoginScreenOne
-import com.sj.corescreens.ui.auth.screens.LoginScreenSeven
-import com.sj.corescreens.ui.auth.screens.LoginScreenSix
-import com.sj.corescreens.ui.auth.screens.LoginScreenTen
+import com.sj.corescreens.ui.auth.screens.loginScreenSeven.LoginScreenSeven
+import com.sj.corescreens.ui.auth.screens.loginScreenSix.LoginScreenSix
+import com.sj.corescreens.ui.auth.screens.loginScreenTen.LoginScreenTen
 import com.sj.corescreens.ui.auth.screens.loginScreenThree.LoginScreenThree
-import com.sj.corescreens.ui.auth.screens.LoginScreenTwo
+import com.sj.corescreens.ui.auth.screens.loginScreenTwo.LoginScreenTwo
 import org.mj.appscreens.ui.screen.ScreenList
 
 sealed class Screen(val route: String) {

@@ -1,4 +1,4 @@
-package com.sj.corescreens.ui.auth.screens
+package com.sj.corescreens.ui.auth.screens.loginScreenFour
 
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -57,7 +57,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.sj.corescreens.R
-import com.sj.corescreens.ui.theme.CustomColor
 import com.sj.corescreens.utils.AllPreview
 
 @Composable

@@ -1,13 +1,12 @@
-package com.sj.corescreens.ui.auth.screens
+package com.sj.corescreens.ui.auth.screens.loginScreenNine
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
@@ -27,7 +26,6 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -48,30 +46,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.sj.corescreens.R
 
-
 @Composable
-fun LoginScreenNine() {
-    /**
-     * email state is use for hold email address, initially is empty
-     */
-    var email by remember {
-        mutableStateOf(
-            TextFieldValue(
-                text = ""
-            )
-        )
-    }
-
-    /**
-     * password state is uee for hold password, initially is empty
-     */
-    var password by remember {
-        mutableStateOf(
-            TextFieldValue(
-                text = ""
-            )
-        )
-    }
+fun SignupScreenNine() {
+    var name by remember { mutableStateOf(TextFieldValue("")) }
+    var username by remember { mutableStateOf(TextFieldValue("")) }
+    var email by remember { mutableStateOf(TextFieldValue("")) }
+    var password by remember { mutableStateOf(TextFieldValue("")) }
+    var confirmPassword by remember { mutableStateOf(TextFieldValue("")) }
 
     Scaffold(
         modifier = Modifier
@@ -80,273 +61,218 @@ fun LoginScreenNine() {
     ) { innerPadding ->
         Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
+                .fillMaxSize()
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            // Header
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(171.dp)
-                    .background(color = MaterialTheme.colorScheme.primary),
+                    .height(80.dp)
+                    .background(MaterialTheme.colorScheme.primary),
                 contentAlignment = Alignment.Center
             ) {
-                /**
-                 * Screen logo section
-                 */
                 Text(
                     text = "LifeLog",
                     color = MaterialTheme.colorScheme.onPrimary,
                     fontSize = 32.sp,
                     fontWeight = FontWeight.W700
-
                 )
             }
 
+            // Title & Subtitle
             Text(
-                text = "Sign in to LifeLog",
+                text = "Create your LifeLog account",
                 color = MaterialTheme.colorScheme.primary,
                 fontSize = 24.sp,
                 fontWeight = FontWeight.W700,
-                modifier = Modifier.padding(top = 24.dp)
+                modifier = Modifier.padding(top = 16.dp)
             )
 
             Text(
-                text = "LifeLog helps you to find good friend.",
+                text = "Join LifeLog and start your journey.",
                 color = MaterialTheme.colorScheme.outline,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.W400,
                 modifier = Modifier.padding(top = 12.dp)
             )
 
+            // Card with inputs
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
                     .background(
-                        color = MaterialTheme.colorScheme.background,
-                        shape = RoundedCornerShape(12.dp)
+                        MaterialTheme.colorScheme.background,
+                        RoundedCornerShape(12.dp)
                     )
-                    .padding(
-                        start = 20.dp,
-                        end = 20.dp,
-                        top = 16.dp
-                    )
+                    .padding(horizontal = 20.dp, vertical = 16.dp)
                     .shadow(
                         elevation = 2.dp,
                         spotColor = MaterialTheme.colorScheme.onSurface,
                         ambientColor = MaterialTheme.colorScheme.surface,
                         shape = RoundedCornerShape(12.dp)
                     )
-
             ) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight()
-                        .padding(bottom = 16.dp)
+                        .padding(8.dp)
                 ) {
-                    Text(
+                    // Name
+                    InputLabel("Name")
+                    OutlinedTextField(
+                        value = name,
+                        onValueChange = { name = it },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(
-                                start = 16.dp,
-                                top = 16.dp,
-                                end = 16.dp
-                            ),
-                        text = "Email",
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight.W500
+                            .padding(horizontal = 16.dp, vertical = 4.dp),
+                        placeholder = { Text("John Doe") },
+                        shape = RoundedCornerShape(6.dp),
+                        textStyle = TextStyle(fontSize = 14.sp)
                     )
 
+                    // Username
+                    InputLabel("Username")
                     OutlinedTextField(
+                        value = username,
+                        onValueChange = { username = it },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(
-                                start = 16.dp,
-                                top = 6.dp,
-                                end = 16.dp
-                            ),
-                        value = email,
+                            .padding(horizontal = 16.dp, vertical = 4.dp),
+                        placeholder = { Text("john_doe") },
+                        shape = RoundedCornerShape(6.dp),
+                        textStyle = TextStyle(fontSize = 14.sp)
+                    )
 
+                    // Email
+                    InputLabel("Email")
+                    OutlinedTextField(
+                        value = email,
                         onValueChange = { email = it },
-                        placeholder = {
-                            Text(text = "example@gmail.com")
-                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 4.dp),
+                        placeholder = { Text("example@gmail.com") },
                         shape = RoundedCornerShape(6.dp),
                         textStyle = TextStyle(fontSize = 14.sp),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
                     )
 
-                    Text(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(
-                                start = 16.dp,
-                                top = 16.dp,
-                                end = 16.dp
-                            ),
-                        text = "Password",
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight.W500
-                    )
-
+                    // Password
+                    InputLabel("Password")
                     OutlinedTextField(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(
-                                start = 16.dp,
-                                top = 8.dp,
-                                end = 16.dp
-                            ),
                         value = password,
                         onValueChange = { password = it },
-                        placeholder = {
-                            Text(text = "password")
-                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 4.dp),
+                        placeholder = { Text("password") },
                         visualTransformation = PasswordVisualTransformation(),
                         shape = RoundedCornerShape(6.dp),
                         textStyle = TextStyle(fontSize = 14.sp),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
                     )
 
-                    /**
-                     * Forgot password text button
-                     */
-                    TextButton(
-                        modifier =
-                        Modifier
-                            .padding(
-                                top = 4.dp,
-                                end = 16.dp
-                            )
-                            .align(Alignment.End),
-                        onClick = { },
-                        contentPadding = PaddingValues(
-                            top = 0.dp,
-                            bottom = 0.dp
-                        )
-                    ) {
-                        Text(
-                            text = "Forgot your Password ?",
-                            fontWeight = FontWeight.W500,
-                            fontSize = 14.sp
-                        )
-                    }
-
-                    /**
-                     * Here is screen signIn button
-                     */
-                    Button(
-                        modifier =
-                        Modifier
-                            .height(48.dp)
+                    // Confirm Password
+                    InputLabel("Confirm Password")
+                    OutlinedTextField(
+                        value = confirmPassword,
+                        onValueChange = { confirmPassword = it },
+                        modifier = Modifier
                             .fillMaxWidth()
-                            .padding(
-                                start = 16.dp,
-                                end = 16.dp
-                            ),
-
+                            .padding(horizontal = 16.dp, vertical = 4.dp),
+                        placeholder = { Text("confirm password") },
+                        visualTransformation = PasswordVisualTransformation(),
                         shape = RoundedCornerShape(6.dp),
-                        onClick = {}
+                        textStyle = TextStyle(fontSize = 14.sp),
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+                    )
+
+                    // Signup Button
+                    Button(
+                        onClick = { },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(48.dp)
+                            .padding(horizontal = 16.dp, vertical = 6.dp),
+                        shape = RoundedCornerShape(6.dp)
                     ) {
-                        Text(
-                            text = "SIGN IN"
-                        )
+                        Text("SIGN UP")
                     }
                 }
             }
 
+            // Social signup section
             Text(
-                modifier = Modifier.padding(top = 16.dp),
-                text = "Or continue with social account",
+                text = "Or sign up with social account",
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colorScheme.primary,
                 fontSize = 14.sp
             )
 
-            /**
-             * Social sign up section
-             */
             Row(
-                modifier = Modifier.padding(
-                    start = 16.dp,
-                    top = 12.dp,
-                    end = 16.dp
-                ),
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 OutlinedButton(
+                    onClick = { },
                     modifier = Modifier
                         .weight(1f)
                         .height(58.dp)
-                        .padding(
-                            top = 8.dp,
-                            end = 6.dp
-                        ),
-                    shape = RoundedCornerShape(
-                        size = 6.dp
-
-                    ),
-                    onClick = { }
+                        .padding(end = 6.dp),
+                    shape = RoundedCornerShape(6.dp)
                 ) {
                     Image(
-                        modifier = Modifier.size(26.dp),
                         painter = painterResource(id = R.drawable.google),
-                        contentDescription = "Description"
+                        contentDescription = "Google",
+                        modifier = Modifier.size(26.dp)
                     )
-
                     Spacer(modifier = Modifier.width(2.dp))
-
-                    Text(
-                        text = "Google",
-                        color = MaterialTheme.colorScheme.primary
-                    )
+                    Text("Google", color = MaterialTheme.colorScheme.primary)
                 }
 
                 OutlinedButton(
+                    onClick = { },
                     modifier = Modifier
-                        .height(58.dp)
                         .weight(1f)
-                        .padding(
-                            start = 6.dp,
-                            top = 8.dp
-                        ),
-                    shape = RoundedCornerShape(
-                        size = 6.dp
-
-                    ),
-                    onClick = { }
+                        .height(58.dp)
+                        .padding(start = 6.dp),
+                    shape = RoundedCornerShape(6.dp)
                 ) {
                     Icon(
-                        modifier = Modifier.size(26.dp),
                         painter = painterResource(id = R.drawable.facebook),
-                        contentDescription = "Description",
-                        tint = Color.Blue.copy(0.6f)
+                        contentDescription = "Facebook",
+                        tint = Color.Blue.copy(0.6f),
+                        modifier = Modifier.size(26.dp)
                     )
-
                     Spacer(modifier = Modifier.width(2.dp))
-
-                    Text(
-                        text = "Facebook",
-                        color = MaterialTheme.colorScheme.primary
-                    )
+                    Text("Facebook", color = MaterialTheme.colorScheme.primary)
                 }
             }
         }
     }
 }
 
+@Composable
+private fun InputLabel(text: String) {
+    Text(
+        text = text,
+        fontSize = 15.sp,
+        fontWeight = FontWeight.W500,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 16.dp, top = 6.dp, end = 16.dp)
+    )
+}
+
 @PreviewLightDark
 @Composable
-fun LoginScreenNinePreview() {
+fun SignupScreenNinePreview() {
     MaterialTheme {
-        Scaffold { innerPadding ->
-            Column(modifier = Modifier.padding(innerPadding)) {
-                LoginScreenNine()
-            }
-        }
+        SignupScreenNine()
     }
 }

@@ -1,4 +1,4 @@
-package com.sj.corescreens.ui.auth.screens
+package com.sj.corescreens.ui.auth.screens.loginScreenFive
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -47,6 +47,7 @@ import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -59,9 +60,24 @@ import com.sj.corescreens.R
 import com.sj.corescreens.ui.theme.CustomColor
 import com.sj.corescreens.utils.AllPreview
 
-
 @Composable
-fun LoginScreenFive() {
+fun SignupScreenFive() {
+
+    var name by remember {
+        mutableStateOf(
+            TextFieldValue(
+                text = ""
+            )
+        )
+    }
+
+    var username by remember {
+        mutableStateOf(
+            TextFieldValue(
+                text = ""
+            )
+        )
+    }
     /**
      * email state is use for hold email address, initially is empty
      */
@@ -77,6 +93,14 @@ fun LoginScreenFive() {
      * password state is uee for hold password, initially is empty
      */
     var password by remember {
+        mutableStateOf(
+            TextFieldValue(
+                text = ""
+            )
+        )
+    }
+
+    var confirmPassword by remember {
         mutableStateOf(
             TextFieldValue(
                 text = ""
@@ -107,7 +131,7 @@ fun LoginScreenFive() {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(330.dp)
+                    .height(220.dp)
                     .drawWithCache {
                         val path = Path()
                         path.addRect(
@@ -153,9 +177,9 @@ fun LoginScreenFive() {
                 modifier = Modifier
                     .padding(
                         start = 16.dp,
-                        top = 40.dp
+                        top = 10.dp
                     ),
-                text = "Log In",
+                text = stringResource(R.string.sign_up),
                 color = MaterialTheme.colorScheme.primary,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold
@@ -164,10 +188,10 @@ fun LoginScreenFive() {
             Text(
                 modifier = Modifier.padding(
                     start = 16.dp,
-                    top = 10.dp,
+                    top = 5.dp,
                     end = 16.dp
                 ),
-                text = "Enter Your Username & Password",
+                text = stringResource(R.string.signup_here),
                 color = MaterialTheme.colorScheme.onSecondaryContainer,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Normal
@@ -178,7 +202,41 @@ fun LoginScreenFive() {
                     .fillMaxWidth()
                     .padding(
                         start = 16.dp,
-                        top = 20.dp,
+                        top = 16.dp,
+                        end = 16.dp
+                    ),
+                value = name,
+                onValueChange = { email = it },
+                placeholder = {
+                    Text(text = "Name")
+                },
+                shape = RoundedCornerShape(20.dp),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
+            )
+
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        start = 16.dp,
+                        top = 16.dp,
+                        end = 16.dp
+                    ),
+                value = username,
+                onValueChange = { email = it },
+                placeholder = {
+                    Text(text = "Username")
+                },
+                shape = RoundedCornerShape(20.dp),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
+            )
+
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        start = 16.dp,
+                        top = 16.dp,
                         end = 16.dp
                     ),
                 value = email,
@@ -207,30 +265,24 @@ fun LoginScreenFive() {
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
 
-            /**
-             * Forgot password text button
-             */
-            TextButton(
-                modifier =
-                Modifier
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth()
                     .padding(
-                        top = 4.dp,
+                        start = 16.dp,
+                        top = 16.dp,
                         end = 16.dp
-                    )
-                    .align(Alignment.End),
-                onClick = { },
-                contentPadding = PaddingValues(
-                    top = 0.dp,
-                    bottom = 0.dp
-                )
-            ) {
-                Text(
-                    text = "Forgot your Password ?",
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.primary,
-                    fontSize = 14.sp
-                )
-            }
+                    ),
+                value = confirmPassword,
+                onValueChange = { password = it },
+                placeholder = {
+                    Text(text = "Confirm password")
+                },
+                shape = RoundedCornerShape(20.dp),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
 
             /**
              * Here is screen signIn button
@@ -265,7 +317,7 @@ fun LoginScreenFive() {
 
             ) {
                 Text(
-                    text = "Login",
+                    text = stringResource(R.string.sign_up),
                     color = Color.White,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -364,19 +416,6 @@ fun LoginScreenFive() {
                     append(" Sign Up")
                 }
             }
-
-            Text(
-                text = text,
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(
-                        top = 24.dp,
-                        start = 16.dp
-                    )
-                    .clickable {
-                    }
-            )
-
             Spacer(modifier = Modifier.height(20.dp))
         }
     }
@@ -384,11 +423,11 @@ fun LoginScreenFive() {
 
 @AllPreview
 @Composable
-fun LoginScreenFivePreview() {
+fun SignupScreenFivePreview() {
     MaterialTheme {
         Scaffold { innerPadding ->
             Column(modifier = Modifier.padding(innerPadding)) {
-                LoginScreenFive()
+                SignupScreenFive()
             }
         }
     }

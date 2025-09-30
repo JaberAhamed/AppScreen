@@ -1,4 +1,5 @@
-package com.sj.corescreens.ui.auth.screens
+
+package com.sj.corescreens.ui.auth.screens.loginScreenSix
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -35,6 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -50,10 +52,24 @@ import com.sj.corescreens.ui.theme.AppScreensTheme
 import com.sj.corescreens.ui.theme.CustomColor
 import com.sj.corescreens.utils.AllPreview
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreenSix() {
+fun SignupScreenSix() {
+    var name by remember {
+        mutableStateOf(
+            TextFieldValue(
+                text = ""
+            )
+        )
+    }
+
+    var userName by remember {
+        mutableStateOf(
+            TextFieldValue(
+                text = ""
+            )
+        )
+    }
     /**
      * email state is use for hold email address, initially is empty
      */
@@ -69,6 +85,14 @@ fun LoginScreenSix() {
      * password state is uee for hold password, initially is empty
      */
     var password by remember {
+        mutableStateOf(
+            TextFieldValue(
+                text = ""
+            )
+        )
+    }
+
+    var confirmPassword by remember {
         mutableStateOf(
             TextFieldValue(
                 text = ""
@@ -126,7 +150,7 @@ fun LoginScreenSix() {
                             start = 16.dp,
                             top = 50.dp
                         ),
-                    text = "Welcome Back!",
+                    text = "Create Account",
                     color = Color.White,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold
@@ -138,11 +162,133 @@ fun LoginScreenSix() {
                             start = 16.dp,
                             top = 12.dp
                         ),
-                    text = "Login to your account",
+                    text = stringResource(id = com.sj.corescreens.R.string.signup_here),
                     color = Color.White,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.W400
                 )
+
+                val interactionSourceName = remember { MutableInteractionSource() }
+
+                BasicTextField(
+                    value = name,
+                    onValueChange = { name = it },
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(
+                                start = 26.dp,
+                                top = 54.dp,
+                                end = 26.dp
+                            )
+                            .background(
+                                brush = Brush.horizontalGradient(colorStops = textFiledColorStops),
+                                shape = RoundedCornerShape(12.dp)
+                            )
+                            .border(
+                                width = 0.1.dp,
+                                color = Color.White,
+                                shape = RoundedCornerShape(12.dp)
+                            ),
+                    visualTransformation = VisualTransformation.None,
+                    interactionSource = interactionSourceName,
+                    enabled = true,
+                    singleLine = true,
+                    textStyle = LocalTextStyle.current,
+                    keyboardOptions =
+                        KeyboardOptions(
+                            keyboardType = KeyboardType.Text,
+                            imeAction = ImeAction.Next
+                        )
+                ) { innerTextField ->
+                    TextFieldDefaults.DecorationBox(
+                        value = email.text,
+                        shape = RoundedCornerShape(12.dp),
+                        placeholder = { Text(text = "Name", color = Color.White) },
+                        visualTransformation = VisualTransformation.None,
+                        innerTextField = innerTextField,
+                        singleLine = true,
+                        enabled = true,
+                        interactionSource = interactionSourceName,
+                        contentPadding =
+                            PaddingValues(
+                                start = 20.dp,
+                                top = 12.dp,
+                                bottom = 12.dp,
+                                end = 0.dp
+                            ),
+                        colors =
+                            TextFieldDefaults.colors(
+                                focusedTextColor = Color.White.copy(0.9f),
+                                focusedContainerColor = Color.Transparent,
+                                unfocusedContainerColor = Color.Transparent,
+                                disabledIndicatorColor = Color.Transparent,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent
+                            )
+                    )
+                }
+
+                val interactionSourceUserName = remember { MutableInteractionSource() }
+
+                BasicTextField(
+                    value = userName,
+                    onValueChange = { userName = it },
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(
+                                start = 26.dp,
+                                top = 16.dp,
+                                end = 26.dp
+                            )
+                            .background(
+                                brush = Brush.horizontalGradient(colorStops = textFiledColorStops),
+                                shape = RoundedCornerShape(12.dp)
+                            )
+                            .border(
+                                width = 0.1.dp,
+                                color = Color.White,
+                                shape = RoundedCornerShape(12.dp)
+                            ),
+                    visualTransformation = VisualTransformation.None,
+                    interactionSource = interactionSourceUserName,
+                    enabled = true,
+                    singleLine = true,
+                    textStyle = LocalTextStyle.current,
+                    keyboardOptions =
+                        KeyboardOptions(
+                            keyboardType = KeyboardType.Text,
+                            imeAction = ImeAction.Next
+                        )
+                ) { innerTextField ->
+                    TextFieldDefaults.DecorationBox(
+                        value = email.text,
+                        shape = RoundedCornerShape(12.dp),
+                        placeholder = { Text(text = "Username", color = Color.White) },
+                        visualTransformation = VisualTransformation.None,
+                        innerTextField = innerTextField,
+                        singleLine = true,
+                        enabled = true,
+                        interactionSource = interactionSourceUserName,
+                        contentPadding =
+                            PaddingValues(
+                                start = 20.dp,
+                                top = 12.dp,
+                                bottom = 12.dp,
+                                end = 0.dp
+                            ),
+                        colors =
+                            TextFieldDefaults.colors(
+                                focusedTextColor = Color.White.copy(0.9f),
+                                focusedContainerColor = Color.Transparent,
+                                unfocusedContainerColor = Color.Transparent,
+                                disabledIndicatorColor = Color.Transparent,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent
+                            )
+                    )
+                }
 
                 // Email Text Field
 
@@ -156,7 +302,7 @@ fun LoginScreenSix() {
                         .fillMaxWidth()
                         .padding(
                             start = 26.dp,
-                            top = 54.dp,
+                            top = 16.dp,
                             end = 26.dp
                         )
                         .background(
@@ -270,39 +416,72 @@ fun LoginScreenSix() {
                     )
                 }
 
-                /**
-                 * Forgot password text button
-                 */
-                TextButton(
+                val interactionSourceConfirmPassword = remember { MutableInteractionSource() }
+
+                BasicTextField(
+                    value = confirmPassword,
+                    onValueChange = { confirmPassword = it },
                     modifier =
-                    Modifier
-                        .padding(
-                            top = 4.dp,
-                            start = 26.dp
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(
+                                start = 26.dp,
+                                end = 26.dp,
+                                top = 16.dp
+                            )
+                            .background(
+                                brush = Brush.horizontalGradient(colorStops = textFiledColorStops),
+                                shape = RoundedCornerShape(12.dp)
+                            )
+                            .border(
+                                width = 0.1.dp,
+                                color = Color.White,
+                                shape = RoundedCornerShape(12.dp)
+                            ),
+                    visualTransformation = PasswordVisualTransformation(),
+                    interactionSource = interactionSourceConfirmPassword,
+                    enabled = true,
+                    singleLine = true,
+                    textStyle = LocalTextStyle.current,
+                    keyboardOptions =
+                        KeyboardOptions(
+                            keyboardType = KeyboardType.Password,
+                            imeAction = ImeAction.Done
                         )
-                        .align(Alignment.Start),
-                    onClick = { },
-                    contentPadding = PaddingValues(
-                        top = 6.dp,
-                        bottom = 0.dp
-                    )
-                ) {
-                    Text(
-                        text = "Forgot your Password ?",
-                        fontWeight = FontWeight.SemiBold,
-                        color = Color.White,
-                        fontSize = 14.sp
+                ) { innerTextField ->
+                    TextFieldDefaults.DecorationBox(
+                        value = password.text,
+                        shape = RoundedCornerShape(12),
+                        placeholder = { Text(text = "Confirm Password", color = Color.White) },
+                        visualTransformation = PasswordVisualTransformation(),
+                        innerTextField = innerTextField,
+                        singleLine = true,
+                        enabled = true,
+                        interactionSource = interactionSourceConfirmPassword,
+                        contentPadding =
+                            PaddingValues(
+                                start = 20.dp,
+                                top = 12.dp,
+                                bottom = 12.dp,
+                                end = 0.dp
+                            ),
+                        colors =
+                            TextFieldDefaults.colors(
+                                focusedTextColor = Color.White,
+                                focusedContainerColor = Color.Transparent,
+                                disabledIndicatorColor = Color.Transparent,
+                                unfocusedContainerColor = Color.Transparent,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent
+                            )
                     )
                 }
 
-                /**
-                 * Here is screen signIn button
-                 */
                 TextButton(
                     modifier =
                     Modifier
                         .padding(
-                            top = 240.dp,
+                            top = 140.dp,
                             start = 26.dp,
                             end = 26.dp
                         )
@@ -323,7 +502,7 @@ fun LoginScreenSix() {
 
                 ) {
                     Text(
-                        text = "Login",
+                        text = "Sign Up",
                         color = Color.White,
                         fontWeight = FontWeight.SemiBold
                     )
@@ -348,18 +527,6 @@ fun LoginScreenSix() {
                     }
                 }
 
-                Text(
-                    text = text,
-                    modifier = Modifier
-                        .align(Alignment.CenterHorizontally)
-                        .padding(
-                            top = 24.dp,
-                            start = 16.dp
-                        )
-                        .clickable {
-                        }
-                )
-
                 Spacer(modifier = Modifier.height(20.dp))
             }
         }
@@ -368,11 +535,11 @@ fun LoginScreenSix() {
 
 @AllPreview
 @Composable
-fun LoginScreenSixPreview() {
+fun SignupScreenSixPreview() {
     AppScreensTheme {
         Scaffold { innerPadding ->
             Column(modifier = Modifier.padding(innerPadding)) {
-                LoginScreenSix()
+                SignupScreenSix()
             }
         }
     }

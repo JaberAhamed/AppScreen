@@ -1,9 +1,6 @@
-@file:Suppress("ktlint:standard:filename")
-
-package com.sj.corescreens.ui.auth.screens.loginScreenTwo
+package com.sj.corescreens.ui.auth.screens.loginScreenFour
 
 import android.widget.Toast
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -19,18 +16,21 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -43,11 +43,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -56,40 +54,17 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.sj.corescreens.R
-import com.sj.corescreens.ui.theme.AppScreensTheme
+import com.sj.corescreens.utils.AllPreview
 
 @Composable
-fun SignupScreenTwo() {
+fun SignupScreenFour() {
     /**
      * Local context is use here for toast context
      */
     val context = LocalContext.current
-
-    /**
-     * fullName state is uee for hold fullName, initially is empty
-     */
-    var name by remember {
-        mutableStateOf(
-            TextFieldValue(
-                text = ""
-            )
-        )
-    }
-
-    /**
-     * username state is uee for hold username, initially is empty
-     */
-    var username by remember {
-        mutableStateOf(
-            TextFieldValue(
-                text = ""
-            )
-        )
-    }
 
     /**
      * email state is use for hold email address, initially is empty
@@ -113,215 +88,132 @@ fun SignupScreenTwo() {
         )
     }
 
-    /**
-     * confirmPassword state is uee for hold confirmPassword, initially is empty
-     */
-    var confirmPassword by remember {
+    var name by remember {
         mutableStateOf(
-            TextFieldValue(
-                text = ""
-            )
+            TextFieldValue("")
         )
     }
+    var userName by remember { mutableStateOf(TextFieldValue("")) }
+    var confirmPassword by remember { mutableStateOf(TextFieldValue("")) }
 
     Scaffold(
         modifier = Modifier
             .navigationBarsPadding()
             .imePadding()
     ) { innerPadding ->
-        Column(modifier = Modifier.padding(innerPadding)) {
+        val configuration = LocalConfiguration.current
+        val screenHeight = configuration.screenHeightDp.dp
+        val topStartRoundValue = 250f
+
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
+        ) {
             Box(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .background(Color.Black.copy(0.9f))
             ) {
                 /**
-                 * Screen top background
+                 * Screen top or logo section
                  */
-                SignupScreenTwoBackground()
+                SignupScreenFourTopSection()
 
-                /**
-                 * Screen bottom image background
-                 */
-                Image(
-                    modifier = Modifier.align(Alignment.BottomStart),
-                    contentScale = ContentScale.Fit,
-                    painter = painterResource(id = R.drawable.bottom_line),
-                    contentDescription = "Screen background image"
-                )
-
-                Column(
-                    modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .verticalScroll(rememberScrollState()),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                Box(
+                    modifier = Modifier
+                        .padding(top = screenHeight / 4f)
+                        .fillMaxSize()
+                        .background(
+                            color = MaterialTheme.colorScheme.onPrimary,
+                            shape = RoundedCornerShape(topStart = topStartRoundValue)
+                        )
 
                 ) {
-                    Text(
-                        modifier = Modifier.padding(top = 97.dp),
-                        text = stringResource(R.string.signup_here),
-                        color = MaterialTheme.colorScheme.primary,
-                        fontSize = 30.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-
-                    Spacer(modifier = Modifier.padding(top = 26.dp))
-
-                    Text(
-                        modifier = Modifier.padding(
-                            start = 98.dp,
-                            end = 98.dp
-                        ),
-                        text = stringResource(R.string.create_new_account),
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        textAlign = TextAlign.Center,
-                        color = MaterialTheme.colorScheme.onSecondaryContainer
-                    )
-
-                    NameInputField(
-                        name = name,
-                        onValueChange = {
-                            name = it
-                        }
-                    )
-
-                    UsernameInputField(
-                        username = username,
-                        onValueChange = {
-                            username = it
-                        }
-                    )
-
-                    EmailInputField(
-                        email = email,
-                        onValueChange = {
-                            email = it
-                        }
-                    )
-
-                    PasswordInputField(
-                        password = password,
-                        onValueChange = {
-                            password = it
-                        }
-                    )
-
-                    ConfirmPasswordInputField(
-                        confirmPassword = confirmPassword,
-                        onValueChange = {
-                            confirmPassword = it
-                        }
-                    )
-
-                    /**
-                     * Here is screen signIn button
-                     */
-                    val signUpButtonClicked = stringResource(R.string.sign_in_btn_clicked)
-                    val validationError = stringResource(R.string.please_fill_all_fields)
-                    val passwordMismatch = stringResource(R.string.password_mismatch)
-
-                    Button(
-                        modifier =
-                        Modifier
-                            .height(48.dp)
-                            .fillMaxWidth()
-                            .padding(
-                                start = 16.dp,
-                                end = 16.dp
-                            )
-                            .shadow(
-                                elevation = 6.dp,
-                                shape = RoundedCornerShape(8.dp),
-                                spotColor = Color.Blue.copy(0.5f)
-                            ),
-
-                        shape = RoundedCornerShape(8.dp),
-                        onClick = {
-                            if (
-                                name.text.isBlank() ||
-                                username.text.isBlank() ||
-                                email.text.isBlank() ||
-                                password.text.isBlank() ||
-                                confirmPassword.text.isBlank()
-                            ) {
-                                Toast.makeText(context, validationError, Toast.LENGTH_SHORT).show()
-                            } else if (password.text != confirmPassword.text) {
-                                Toast.makeText(context, passwordMismatch, Toast.LENGTH_SHORT).show()
-                            } else {
-                                Toast.makeText(context, signUpButtonClicked, Toast.LENGTH_SHORT).show()
-                                // You can also trigger API call here or navigate to the next screen
-                            }
-                        },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.primary
-                        )
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
+                            modifier = Modifier.padding(top = 50.dp),
                             text = stringResource(R.string.sign_up),
-                            color = Color.White
+                            color = MaterialTheme.colorScheme.onSecondaryContainer,
+                            fontSize = 30.sp,
+                            fontWeight = FontWeight.Bold
                         )
-                    }
 
-                    Text(
-                        modifier = Modifier.padding(top = 24.dp),
-                        text = stringResource(R.string.or_with),
-                        fontWeight = FontWeight.SemiBold,
-                        color = MaterialTheme.colorScheme.primary,
-                        fontSize = 14.sp
-                    )
+                        NameInputField(
+                            name = name,
+                            onValueChange = { name = it }
+                        )
 
-                    Row(
-                        modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .padding(
-                                start = 16.dp,
-                                top = 32.dp,
-                                end = 16.dp,
-                                bottom = 20.dp
+                        UserNameInputField(
+                            userName = userName,
+                            onValueChange = { userName = it }
+                        )
+
+                        EmailInputField(
+                            email = email,
+                            onValueChange = {
+                                email = it
+                            }
+                        )
+
+                        PasswordInputField(
+                            password = password,
+                            onValueChange = {
+                                password = it
+                            }
+                        )
+
+                        ConfirmPasswordInputField(
+                            confirmPassword = confirmPassword,
+                            onValueChange = { confirmPassword = it }
+                        )
+
+                        Spacer(modifier = Modifier.height(30.dp))
+
+                        /**
+                         * Here is screen signIn button
+                         */
+                        val signUpButtonClicked = stringResource(R.string.sign_in_btn_clicked)
+                        val validationError = stringResource(R.string.please_fill_all_fields)
+                        Button(
+                            modifier = Modifier
+                                .height(48.dp)
+                                .fillMaxWidth()
+                                .padding(
+                                    start = 26.dp,
+                                    end = 26.dp
+                                ),
+                            shape = RoundedCornerShape(
+                                topStart = 16f,
+                                topEnd = 0f,
+                                bottomStart = 16f,
+                                bottomEnd = 16f
+
                             ),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Box(
-                            modifier =
-                            Modifier
-                                .height(52.dp)
-                                .width(60.dp)
-                                .background(
-                                    color = MaterialTheme.colorScheme.primary,
-                                    shape = RoundedCornerShape(8.dp)
-                                ),
-                            contentAlignment = Alignment.Center
-
+                            onClick = {
+                                if (email.text.isEmpty() || password.text.isEmpty()) {
+                                    Toast.makeText(context, validationError, Toast.LENGTH_SHORT).show()
+                                } else {
+                                    Toast.makeText(context, signUpButtonClicked, Toast.LENGTH_SHORT).show()
+                                }
+                            },
+                            colors = ButtonDefaults
+                                .buttonColors(
+                                    containerColor = Color.Black.copy(0.9f)
+                                )
                         ) {
-                            Image(
-                                contentScale = ContentScale.Fit,
-                                painter = painterResource(id = R.drawable.facebook),
-                                contentDescription = "Sign in with Facebook"
+                            Text(
+                                text = stringResource(R.string.sign_up),
+                                fontWeight = FontWeight.W600,
+                                color = Color.White
                             )
                         }
 
-                        Spacer(modifier = Modifier.width(40.dp))
-
-                        Box(
-                            modifier =
-                            Modifier
-                                .height(52.dp)
-                                .width(60.dp)
-                                .background(
-                                    color = MaterialTheme.colorScheme.primary,
-                                    shape = RoundedCornerShape(8.dp)
-                                ),
-                            contentAlignment = Alignment.Center
-
-                        ) {
-                            Image(
-                                contentScale = ContentScale.Fit,
-                                painter = painterResource(id = R.drawable.gmail),
-                                contentDescription = "Sign in with Google"
-                            )
-                        }
+                        Spacer(modifier = Modifier.height(250.dp))
                     }
                 }
             }
@@ -329,39 +221,37 @@ fun SignupScreenTwo() {
     }
 }
 
-/**
- * Draw box for screen top background
- */
 @Composable
-fun SignupScreenTwoBackground(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier.fillMaxWidth()
+fun SignupScreenFourTopSection(modifier: Modifier = Modifier) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(top = 50.dp),
+
+        horizontalArrangement = Arrangement.Center
     ) {
         Box(
-            modifier =
-            Modifier
-                .offset(x = 23.dp, y = (-171).dp)
-                .width(496.dp)
-                .height(496.dp)
-                .border(
-                    width = 2.dp,
-                    color = MaterialTheme.colorScheme.inverseOnSurface,
-                    shape = CircleShape
-                )
-        )
-
-        Box(
-            modifier =
-            Modifier
-                .offset(x = 114.dp, y = (-358).dp)
-                .align(Alignment.TopEnd)
-                .width(635.dp)
-                .height(635.dp)
+            modifier = Modifier
+                .size(80.dp)
                 .background(
-                    color = MaterialTheme.colorScheme.inverseOnSurface,
-                    shape = CircleShape
-                )
-        )
+                    Color.White,
+                    shape = RoundedCornerShape(
+                        topStart = 100f,
+                        topEnd = 30f,
+                        bottomStart = 30f,
+                        bottomEnd = 100f
+                    )
+                ),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = "A",
+                textAlign = TextAlign.Center,
+                fontSize = 40.sp,
+                fontWeight = FontWeight.W500,
+                color = Color.Black
+            )
+        }
     }
 }
 
@@ -380,7 +270,7 @@ private fun NameInputField(
         onValueChange = onValueChange,
         modifier = modifier
             .fillMaxWidth()
-            .padding(start = 16.dp, top = 30.dp, end = 16.dp)
+            .padding(start = 26.dp, end = 26.dp, top = 30.dp)
             .border(
                 width = if (isNameFocused) 1.dp else 0.dp,
                 color = if (isNameFocused) Color.Blue else Color.Transparent,
@@ -405,10 +295,17 @@ private fun NameInputField(
             singleLine = true,
             enabled = true,
             interactionSource = interactionSourceName,
+            prefix = {
+                Icon(
+                    imageVector = Icons.Default.Person,
+                    contentDescription = "Name input field icon"
+                )
+            },
             contentPadding = PaddingValues(start = 20.dp, top = 12.dp, bottom = 12.dp, end = 0.dp),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = MaterialTheme.colorScheme.inverseOnSurface,
-                unfocusedContainerColor = MaterialTheme.colorScheme.inverseOnSurface,
+                focusedTextColor = Color.Black.copy(0.9f),
+                focusedContainerColor = Color.LightGray.copy(0.4f),
+                unfocusedContainerColor = Color.LightGray.copy(0.4f),
                 disabledIndicatorColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent
@@ -419,27 +316,27 @@ private fun NameInputField(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun UsernameInputField(
+private fun UserNameInputField(
     modifier: Modifier = Modifier,
-    username: TextFieldValue,
+    userName: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit
 ) {
-    val interactionSourceUsername = remember { MutableInteractionSource() }
-    val isUsernameFocused by interactionSourceUsername.collectIsFocusedAsState()
+    val interactionSourceUserName = remember { MutableInteractionSource() }
+    val isUserNameFocused by interactionSourceUserName.collectIsFocusedAsState()
 
     BasicTextField(
-        value = username,
+        value = userName,
         onValueChange = onValueChange,
         modifier = modifier
             .fillMaxWidth()
-            .padding(start = 16.dp, top = 16.dp, end = 16.dp)
+            .padding(start = 26.dp, end = 26.dp, top = 30.dp)
             .border(
-                width = if (isUsernameFocused) 1.dp else 0.dp,
-                color = if (isUsernameFocused) Color.Blue else Color.Transparent,
+                width = if (isUserNameFocused) 1.dp else 0.dp,
+                color = if (isUserNameFocused) Color.Blue else Color.Transparent,
                 shape = RoundedCornerShape(8.dp)
             ),
         visualTransformation = VisualTransformation.None,
-        interactionSource = interactionSourceUsername,
+        interactionSource = interactionSourceUserName,
         enabled = true,
         singleLine = true,
         textStyle = LocalTextStyle.current,
@@ -449,18 +346,25 @@ private fun UsernameInputField(
         )
     ) { innerTextField ->
         TextFieldDefaults.DecorationBox(
-            value = username.text,
+            value = userName.text,
             shape = RoundedCornerShape(8.dp),
             placeholder = { Text(text = stringResource(R.string.username)) },
             visualTransformation = VisualTransformation.None,
             innerTextField = innerTextField,
             singleLine = true,
             enabled = true,
-            interactionSource = interactionSourceUsername,
+            interactionSource = interactionSourceUserName,
+            prefix = {
+                Icon(
+                    imageVector = Icons.Default.Person,
+                    contentDescription = "Username input field icon"
+                )
+            },
             contentPadding = PaddingValues(start = 20.dp, top = 12.dp, bottom = 12.dp, end = 0.dp),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = MaterialTheme.colorScheme.inverseOnSurface,
-                unfocusedContainerColor = MaterialTheme.colorScheme.inverseOnSurface,
+                focusedTextColor = Color.Black.copy(0.9f),
+                focusedContainerColor = Color.LightGray.copy(0.4f),
+                unfocusedContainerColor = Color.LightGray.copy(0.4f),
                 disabledIndicatorColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent
@@ -485,9 +389,9 @@ private fun EmailInputField(
         modifier = modifier
             .fillMaxWidth()
             .padding(
-                start = 16.dp,
-                top = 16.dp,
-                end = 16.dp
+                start = 26.dp,
+                top = 26.dp,
+                end = 26.dp
             )
             .border(
                 width = if (isEmailFocused) 1.dp else 0.dp,
@@ -516,6 +420,12 @@ private fun EmailInputField(
             singleLine = true,
             enabled = true,
             interactionSource = interactionSourceEmail,
+            prefix = {
+                Icon(
+                    imageVector = Icons.Default.Email,
+                    contentDescription = "Mail input field icon"
+                )
+            },
             contentPadding =
             PaddingValues(
                 start = 20.dp,
@@ -525,12 +435,14 @@ private fun EmailInputField(
             ),
             colors =
             TextFieldDefaults.colors(
-                focusedContainerColor = MaterialTheme.colorScheme.inverseOnSurface,
-                unfocusedContainerColor = MaterialTheme.colorScheme.inverseOnSurface,
+                focusedTextColor = Color.Black.copy(0.9f),
+                focusedContainerColor = Color.LightGray.copy(0.4f),
+                unfocusedContainerColor = Color.LightGray.copy(0.4f),
                 disabledIndicatorColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent
             )
+
         )
     }
 }
@@ -552,9 +464,9 @@ private fun PasswordInputField(
         modifier = modifier
             .fillMaxWidth()
             .padding(
-                start = 16.dp,
-                end = 16.dp,
-                top = 16.dp
+                start = 26.dp,
+                end = 26.dp,
+                top = 30.dp
             )
             .border(
                 width = if (isPasswordFocused) 1.dp else 0.dp,
@@ -574,12 +486,19 @@ private fun PasswordInputField(
     ) { innerTextField ->
         TextFieldDefaults.DecorationBox(
             value = password.text,
-            placeholder = { Text(text = "Password") },
+            shape = RoundedCornerShape(8),
+            placeholder = { Text(text = stringResource(R.string.password)) },
             visualTransformation = PasswordVisualTransformation(),
             innerTextField = innerTextField,
             singleLine = true,
             enabled = true,
             interactionSource = interactionSourcePassword,
+            prefix = {
+                Icon(
+                    imageVector = Icons.Default.Lock,
+                    contentDescription = "Password input field icon"
+                )
+            },
             contentPadding =
             PaddingValues(
                 start = 20.dp,
@@ -589,8 +508,9 @@ private fun PasswordInputField(
             ),
             colors =
             TextFieldDefaults.colors(
-                focusedContainerColor = MaterialTheme.colorScheme.inverseOnSurface,
-                unfocusedContainerColor = MaterialTheme.colorScheme.inverseOnSurface,
+                focusedTextColor = Color.Black.copy(0.9f),
+                focusedContainerColor = Color.LightGray.copy(0.4f),
+                unfocusedContainerColor = Color.LightGray.copy(0.4f),
                 disabledIndicatorColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent
@@ -607,17 +527,17 @@ private fun ConfirmPasswordInputField(
     onValueChange: (TextFieldValue) -> Unit
 ) {
     val interactionSourceConfirmPassword = remember { MutableInteractionSource() }
-    val isConfirmFocused by interactionSourceConfirmPassword.collectIsFocusedAsState()
+    val isConfirmPasswordFocused by interactionSourceConfirmPassword.collectIsFocusedAsState()
 
     BasicTextField(
         value = confirmPassword,
         onValueChange = onValueChange,
         modifier = modifier
             .fillMaxWidth()
-            .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 30.dp)
+            .padding(start = 26.dp, end = 26.dp, top = 30.dp)
             .border(
-                width = if (isConfirmFocused) 1.dp else 0.dp,
-                color = if (isConfirmFocused) Color.Blue else Color.Transparent,
+                width = if (isConfirmPasswordFocused) 1.dp else 0.dp,
+                color = if (isConfirmPasswordFocused) Color.Blue else Color.Transparent,
                 shape = RoundedCornerShape(8.dp)
             ),
         visualTransformation = PasswordVisualTransformation(),
@@ -632,17 +552,24 @@ private fun ConfirmPasswordInputField(
     ) { innerTextField ->
         TextFieldDefaults.DecorationBox(
             value = confirmPassword.text,
-            shape = RoundedCornerShape(8.dp),
+            shape = RoundedCornerShape(8),
             placeholder = { Text(text = stringResource(R.string.confirm_password)) },
             visualTransformation = PasswordVisualTransformation(),
             innerTextField = innerTextField,
             singleLine = true,
             enabled = true,
             interactionSource = interactionSourceConfirmPassword,
+            prefix = {
+                Icon(
+                    imageVector = Icons.Default.Lock,
+                    contentDescription = "Confirm password input field icon"
+                )
+            },
             contentPadding = PaddingValues(start = 20.dp, top = 12.dp, bottom = 12.dp, end = 0.dp),
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = MaterialTheme.colorScheme.inverseOnSurface,
-                unfocusedContainerColor = MaterialTheme.colorScheme.inverseOnSurface,
+                focusedTextColor = Color.Black.copy(0.9f),
+                focusedContainerColor = Color.LightGray.copy(0.4f),
+                unfocusedContainerColor = Color.LightGray.copy(0.4f),
                 disabledIndicatorColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent
@@ -651,13 +578,13 @@ private fun ConfirmPasswordInputField(
     }
 }
 
-@PreviewLightDark
+@AllPreview
 @Composable
-fun SignupScreenTwoPreview() {
-    AppScreensTheme {
+fun SignupScreenFourPreview() {
+    MaterialTheme {
         Scaffold { innerPadding ->
             Column(modifier = Modifier.padding(innerPadding)) {
-                SignupScreenTwo()
+                SignupScreenFour()
             }
         }
     }

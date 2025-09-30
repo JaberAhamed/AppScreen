@@ -1,4 +1,4 @@
-package com.sj.corescreens.ui.auth.screens
+package com.sj.corescreens.ui.auth.screens.loginScreenSeven
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -45,7 +45,6 @@ import androidx.compose.ui.unit.sp
 import com.sj.corescreens.ui.theme.AppScreensTheme
 import com.sj.corescreens.ui.theme.CustomColor
 import com.sj.corescreens.utils.AllPreview
-
 
 @Composable
 fun LoginScreenSeven() {
