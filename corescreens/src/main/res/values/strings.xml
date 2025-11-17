@@ -28,4 +28,11 @@
     <string name="sign_up_btn_clicked">Sign Up button clicked!</string>
     <string name="password_mismatch">Passwords do not match</string>
     <string name="signup_here">Signup here</string>
+    <string name="enter_your_email_to_reset">Enter your email to receive password reset instructions.</string>
+    <string name="send_reset_link">Send Reset Link</string>
+    <string name="submit">Submit</string>
+    <string name="please_enter_email">Please enter your email</string>
+    <string name="reset_link_sent">Password reset link sent</string>
+    <string name="back_to_sign_in">Back to Sign In</string>
+    <string name="back_to_sign_in_clicked">Back to Sign In clicked</string>
 </resources>
